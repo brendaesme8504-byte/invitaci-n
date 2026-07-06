@@ -1,0 +1,342 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invitación de Aylin</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:'Trebuchet MS', Arial, sans-serif;
+  background:#1c1037;
+  color:#62306d;
+  overflow-x:hidden;
+}
+.screen{
+  min-height:100vh;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:24px 14px;
+}
+.intro{
+  background:radial-gradient(circle at top,#7c3aed,#1c1037 72%);
+  color:white;
+  text-align:center;
+}
+.intro-card{
+  width:min(92vw,420px);
+  animation:fadeUp 1.2s ease both;
+}
+.intro-title{
+  font-size:1.55rem;
+  line-height:1.45;
+  font-weight:900;
+  text-shadow:0 0 18px rgba(255,255,255,.35);
+}
+.open{
+  border:0;
+  background:linear-gradient(135deg,#ff61b6,#a970ff);
+  color:white;
+  padding:17px 26px;
+  border-radius:999px;
+  font-size:1.12rem;
+  font-weight:900;
+  box-shadow:0 0 30px #ff8add99;
+  animation:pulse 1.7s infinite;
+  margin-top:16px;
+}
+.magic{position:absolute;inset:0;pointer-events:none}
+.star{
+  position:absolute;
+  color:white;
+  text-shadow:0 0 12px white;
+  animation:float linear infinite;
+  opacity:.92;
+}
+@keyframes float{from{transform:translateY(105vh) rotate(0)}to{transform:translateY(-10vh) rotate(360deg)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{50%{transform:scale(1.06)}}
+
+.invitation{
+  display:none;
+  background:linear-gradient(180deg,#ffd5f2,#e8d1ff 52%,#b997ff);
+}
+.invitation:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 18% 12%,rgba(255,255,255,.9),transparent 13%),
+    radial-gradient(circle at 88% 18%,rgba(255,255,255,.65),transparent 12%),
+    radial-gradient(circle at 50% 90%,rgba(255,255,255,.35),transparent 20%);
+}
+.cloud{
+  position:absolute;
+  width:165px;height:55px;
+  background:rgba(255,255,255,.72);
+  border-radius:999px;
+  animation:drift 8s ease-in-out infinite alternate;
+}
+.cloud:before,.cloud:after{
+  content:"";
+  position:absolute;
+  background:inherit;
+  border-radius:50%;
+}
+.cloud:before{width:75px;height:75px;top:-36px;left:25px}
+.cloud:after{width:92px;height:92px;top:-47px;right:15px}
+.c1{top:7%;left:-60px}
+.c2{bottom:7%;right:-65px;animation-delay:-3s}
+.c3{top:43%;right:-80px;transform:scale(.7);animation-delay:-5s}
+@keyframes drift{to{transform:translateX(35px)}}
+
+.balloon{
+  position:absolute;
+  font-size:44px;
+  filter:drop-shadow(0 9px 10px #6b21a833);
+  animation:balloon 4.2s ease-in-out infinite;
+}
+.b1{top:8%;left:7%}
+.b2{top:18%;right:7%;animation-delay:-1.4s}
+.b3{bottom:7%;right:14%;animation-delay:-2.4s}
+@keyframes balloon{50%{transform:translateY(-20px) rotate(5deg)}}
+
+.rainbow{
+  position:absolute;
+  top:18px;
+  width:330px;height:165px;
+  border-radius:330px 330px 0 0;
+  border-top:18px solid rgba(255,105,190,.45);
+  opacity:.85;
+  animation:shine 2.8s ease-in-out infinite;
+}
+.rainbow:before{
+  content:"";
+  position:absolute;
+  left:22px;right:22px;top:18px;height:115px;
+  border-radius:260px 260px 0 0;
+  border-top:18px solid rgba(255,235,135,.5);
+}
+.rainbow:after{
+  content:"";
+  position:absolute;
+  left:45px;right:45px;top:40px;height:88px;
+  border-radius:210px 210px 0 0;
+  border-top:18px solid rgba(105,220,255,.5);
+}
+@keyframes shine{50%{filter:brightness(1.25)}}
+
+.card{
+  position:relative;
+  z-index:3;
+  width:min(93vw,445px);
+  background:rgba(255,255,255,.9);
+  border:3px solid rgba(255,255,255,.94);
+  border-radius:36px;
+  padding:22px 18px;
+  text-align:center;
+  box-shadow:0 18px 45px rgba(86,38,135,.3);
+  animation:cardIn 1s ease both;
+}
+@keyframes cardIn{from{opacity:0;transform:scale(.8) translateY(25px)}to{opacity:1;transform:scale(1) translateY(0)}}
+
+.unicorn-art{
+  width:116px;
+  height:116px;
+  margin:0 auto 4px;
+  position:relative;
+  animation:bounce 2s ease-in-out infinite;
+}
+.head{
+  position:absolute;
+  inset:22px 18px 14px 22px;
+  background:linear-gradient(145deg,#fff,#ffeafe);
+  border-radius:52% 48% 45% 55%;
+  box-shadow:inset -8px -8px 0 #f7d9ff,0 8px 16px #8b5cf633;
+}
+.horn{
+  position:absolute;
+  left:48px;top:0;
+  width:22px;height:52px;
+  background:linear-gradient(135deg,#ffd966,#ff7ac8,#9b5cff);
+  clip-path:polygon(50% 0,100% 100%,0 100%);
+  transform:rotate(8deg);
+}
+.ear{position:absolute;width:32px;height:42px;background:#fff;border-radius:80% 20%;top:20px}
+.ear.l{left:16px;transform:rotate(-25deg)}
+.ear.r{right:16px;transform:rotate(45deg)}
+.mane{
+  position:absolute;
+  right:16px;top:34px;
+  width:34px;height:70px;
+  background:linear-gradient(#ff66bd,#a970ff,#73d6ff);
+  border-radius:999px;
+}
+.eye{
+  position:absolute;
+  left:40px;top:58px;
+  width:10px;height:10px;background:#6d287a;border-radius:50%;
+  box-shadow:30px 2px 0 #6d287a;
+}
+.nose{
+  position:absolute;
+  left:53px;top:78px;
+  width:23px;height:12px;border-bottom:4px solid #ff8ac8;border-radius:50%;
+}
+@keyframes bounce{50%{transform:translateY(-8px)}}
+
+.badge{
+  display:inline-block;
+  background:#ffe1f4;
+  color:#b83280;
+  padding:8px 18px;
+  border-radius:999px;
+  font-weight:900;
+  margin-top:4px;
+}
+h1{
+  font-family:Georgia,serif;
+  font-style:italic;
+  font-size:clamp(3.7rem,17vw,5.3rem);
+  line-height:.9;
+  margin:6px 0;
+  color:#ff4fa6;
+  text-shadow:0 3px 0 white,0 0 20px #ff5fb088;
+}
+.subtitle,.message{
+  font-weight:800;
+  line-height:1.45;
+}
+.info{display:grid;gap:10px}
+.box{
+  background:linear-gradient(135deg,#ffe7f7,#eee0ff);
+  border:2px solid white;
+  border-radius:22px;
+  padding:12px 10px;
+  font-weight:800;
+  box-shadow:inset 0 0 18px rgba(255,255,255,.6);
+}
+.box span{display:block;font-size:30px}
+.box strong{color:#9333ea}
+.buttons{display:grid;gap:10px;margin-top:14px}
+.btn{
+  display:block;
+  text-decoration:none;
+  color:white;
+  padding:15px 12px;
+  border-radius:18px;
+  font-weight:900;
+  box-shadow:0 8px 18px rgba(91,33,182,.24);
+  transition:.2s;
+}
+.btn:active{transform:scale(.97)}
+.map{background:linear-gradient(135deg,#ff5fb0,#ff9bd1)}
+.cal{background:linear-gradient(135deg,#8b5cf6,#c084fc)}
+.wa{background:linear-gradient(135deg,#ec4899,#f472b6)}
+.footer{
+  color:#9333ea;
+  font-size:1.22rem;
+  font-weight:900;
+  margin:16px 0 0;
+  line-height:1.35;
+}
+.confetti{
+  position:fixed;
+  top:-25px;
+  z-index:20;
+  animation:fall 3.2s linear forwards;
+}
+@keyframes fall{to{transform:translateY(110vh) rotate(760deg);opacity:0}}
+</style>
+</head>
+<body>
+
+<section class="screen intro" id="intro">
+  <div class="magic" id="introStars"></div>
+  <div class="intro-card">
+    <div style="font-size:76px">🌙✨</div>
+    <p class="intro-title">En un lugar donde los sueños tienen colores...</p>
+    <p class="intro-title">una pequeña unicornio está por celebrar un día muy especial.</p>
+    <button class="open" id="openBtn">✨ Abrir invitación ✨</button>
+  </div>
+</section>
+
+<section class="screen invitation" id="invitation">
+  <div class="magic" id="stars"></div>
+  <div class="rainbow"></div>
+  <div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div>
+  <div class="balloon b1">🎈</div><div class="balloon b2">💜</div><div class="balloon b3">🎈</div>
+
+  <article class="card">
+    <div class="unicorn-art" aria-label="Unicornio">
+      <div class="ear l"></div><div class="ear r"></div><div class="horn"></div><div class="mane"></div>
+      <div class="head"></div><div class="eye"></div><div class="nose"></div>
+    </div>
+
+    <div class="badge">¡Estás invitado!</div>
+    <h1>Aylin</h1>
+    <div style="font-size:1.5rem;font-weight:900;color:#8b5cf6;margin-top:6px;">🎂 ¡Cumple 13 años! 🎂</div>
+    <p class="subtitle">Ven a celebrar un cumpleaños lleno de unicornios, magia y diversión.</p>
+
+    <div class="info">
+      <div class="box"><span>📅</span><strong>Fecha</strong><br>Sábado<br>8 de agosto de 2026</div>
+      <div class="box"><span>🕓</span><strong>Hora</strong><br>4:00 p.m.</div>
+      <div class="box"><span>📍</span><strong>Lugar</strong><br>Mina Providencia #1301<br>Interior 40<br>Villas del Real</div>
+    </div>
+
+    <p class="message">Habrá sorpresas, juegos y momentos mágicos. 💖</p>
+
+    <div class="buttons">
+      <a class="btn map" href="https://maps.app.goo.gl/Y4USGcrHCQuTtJgMA?g_st=aw" target="_blank">📍 Ver ubicación exacta</a>
+      <a class="btn cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cumplea%C3%B1os%20de%20Aylin%20%F0%9F%A6%84&dates=20260808T160000/20260808T190000&details=Cumplea%C3%B1os%20de%20Aylin.%20Tem%C3%A1tica%20de%20unicornios.%20%C2%A1Te%20esperamos%20para%20vivir%20una%20tarde%20llena%20de%20magia%21&location=Mina%20Providencia%20%231301%20Interior%2040%2C%20Villas%20del%20Real" target="_blank">📅 Agregar al calendario</a>
+      <a class="btn wa" href="https://wa.me/?text=%C2%A1Hola%21%20Confirmo%20mi%20asistencia%20al%20cumplea%C3%B1os%20de%20Aylin%20%F0%9F%A6%84%F0%9F%92%9C" target="_blank">💌 Confirmar asistencia</a>
+    </div>
+
+    <p class="footer">¡Te esperamos para vivir una tarde llena de magia! 🦄💜</p>
+  </article>
+</section>
+
+<script>
+function makeStars(target, count){
+  const chars=["✨","✦","⭐","💖","💜"];
+  for(let i=0;i<count;i++){
+    const s=document.createElement("span");
+    s.className="star";
+    s.textContent=chars[Math.floor(Math.random()*chars.length)];
+    s.style.left=Math.random()*100+"vw";
+    s.style.fontSize=(10+Math.random()*18)+"px";
+    s.style.animationDuration=(5+Math.random()*8)+"s";
+    s.style.animationDelay=(-Math.random()*8)+"s";
+    document.getElementById(target).appendChild(s);
+  }
+}
+makeStars("introStars",48);
+makeStars("stars",65);
+
+function confetti(){
+  const cc=["🦄","🌈","✨","💖","💜","⭐","🎈"];
+  for(let i=0;i<45;i++){
+    const c=document.createElement("span");
+    c.className="confetti";
+    c.textContent=cc[Math.floor(Math.random()*cc.length)];
+    c.style.left=Math.random()*100+"vw";
+    c.style.fontSize=(16+Math.random()*20)+"px";
+    c.style.animationDelay=(Math.random()*.85)+"s";
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),4200);
+  }
+}
+
+document.getElementById("openBtn").addEventListener("click",()=>{
+  document.getElementById("intro").style.display="none";
+  document.getElementById("invitation").style.display="flex";
+  confetti();
+});
+</script>
+</body>
+</html>
